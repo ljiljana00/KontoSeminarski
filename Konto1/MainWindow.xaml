@@ -1,0 +1,59 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Upravljanje Kontima - Baza: RIS" Height="500" Width="750" WindowStartupLocation="CenterScreen">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Pretraga" Grid.Row="0" Margin="0,0,0,10" Padding="5">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Pretraži po šifri ili nazivu:"/>
+                <TextBox x:Name="txtPretraga" Width="250" VerticalContentAlignment="Center" TextChanged="TxtPretraga_TextChanged"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Podaci o kontu" Grid.Row="1" Margin="0,0,0,10" Padding="5">
+            <UniformGrid Columns="3">
+                <StackPanel Margin="5">
+                    <Label Content="Konto (Šifra):"/>
+                    <TextBox x:Name="txtKonto"/>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <Label Content="Naziv:"/>
+                    <TextBox x:Name="txtNaziv"/>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <Label Content="Prenos:"/>
+                    <TextBox x:Name="txtPrenos"/>
+                </StackPanel>
+            </UniformGrid>
+        </GroupBox>
+
+        <DataGrid x:Name="dgKonto" Grid.Row="2" AutoGenerateColumns="False" 
+                  CanUserAddRows="False" SelectionChanged="DgKonto_SelectionChanged" 
+                  FontSize="14" AlternatingRowBackground="#F0F0F0" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" Visibility="Collapsed"/>
+                <DataGridTextColumn Header="Šifra Konta" Binding="{Binding konto}" Width="100"/>
+                <DataGridTextColumn Header="Naziv Konta" Binding="{Binding naziv}" Width="*"/>
+                <DataGridTextColumn Header="Prenos" Binding="{Binding prenos}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DockPanel Grid.Row="3" Margin="0,15,0,0">
+            <Button Content="IZLAZ" DockPanel.Dock="Left" Width="100" Height="35" Background="#FF7043" Foreground="White" FontWeight="Bold" Click="BtnIzlaz_Click"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Unesi novi" Width="100" Margin="5" Background="#E1F5FE" Click="BtnUnesi_Click"/>
+                <Button Content="Sačuvaj izmene" Width="100" Margin="5" Background="#FFF9C4" Click="BtnIzmeni_Click"/>
+                <Button Content="Obriši" Width="100" Margin="5" Background="#FFEBEE" Click="BtnObrisi_Click"/>
+                <Button Content="Osveži" Width="110" Margin="5" Background="#E8F5E9" Click="BtnOsvezi_Click"/>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>
